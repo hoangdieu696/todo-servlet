@@ -10,8 +10,8 @@
 
 	<name>webapp Maven Webapp</name>
 	<description>Simple Maven webapp</description>
-	<url>http://maven.apache.org</url>
-	
+	<url>https://github.com/hoangdieu696/todo-servlet</url>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -76,6 +76,15 @@
 		<finalName>webapp</finalName>
 
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.8.2</version>
+				<configuration>
+					<locales>en,vi</locales>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
