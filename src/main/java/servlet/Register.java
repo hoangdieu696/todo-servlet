@@ -31,9 +31,11 @@ public class Register extends HttpServlet {
 			
 			id = userModel.add(new User(username, pass));
 			Cookie uid = new Cookie("user_id", String.valueOf(id));
+			Cookie cuser = new Cookie("username", username); 
 			response.addCookie(uid);
+			response.addCookie(cuser);
 
-			response.sendRedirect("/todo");
+			response.sendRedirect(request.getContextPath()+"/todo");
 			return;
 		}
 

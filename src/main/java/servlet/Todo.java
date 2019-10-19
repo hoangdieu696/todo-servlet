@@ -31,9 +31,12 @@ public class Todo extends HttpServlet {
 
 		Cookie[] cookies = request.getCookies();
 		int uid = 0;
+		String username = "";
 		for (Cookie cookie : cookies) {
 			if (cookie.getName().equals("user_id"))
 				uid = Integer.parseInt(cookie.getValue());
+			if (cookie.getName().equals("username"))
+				username = cookie.getValue();
 		}
 
 		TodoModel todoModel = new TodoModel();
@@ -50,6 +53,7 @@ public class Todo extends HttpServlet {
 
 		request.setAttribute("done", done);
 		request.setAttribute("undone", undone);
+		request.setAttribute("user", username);
 
 		request.getRequestDispatcher("todo.jsp").include(request, response);
 	}

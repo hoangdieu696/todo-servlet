@@ -26,6 +26,13 @@
 </head>
 <body>
 	<section class="section">
+		<div class="columns is-mobile">
+			<div class="column is-4 is-offset-8">
+				<span class="subtitle">Xin chào, <%= request.getAttribute("user") %></span>
+				<a class="has-text-link" href="logout">Đăng xuất</a>
+			</div>
+		</div>
+		
 		<div class="columns is-mobile is-centered">
 			<div class="column is-half">
 				<form action="<%=request.getContextPath()%>/todo" method="post">

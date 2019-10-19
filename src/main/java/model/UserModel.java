@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import entity.User;
 
@@ -17,10 +18,16 @@ public class UserModel {
 		int id = 0;
 
 		try {
-			PreparedStatement stmt = db.prepareStatement("insert into " + table + " (username, password) values(?, ?)");
+			PreparedStatement stmt = db.prepareStatement("insert into " + table + " (username, password) values(?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, user.getUsername());
 			stmt.setString(2, user.getPassword());
-			id = stmt.executeUpdate();
+			stmt.executeUpdate();
+			
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				id = rs.getInt("id");
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -34,7 +41,8 @@ public class UserModel {
 		int id = 0;
 
 		try {
-			PreparedStatement stmt = db.prepareStatement("select id from " + table + " where username = ? and password = ?");
+			PreparedStatement stmt = db
+					.prepareStatement("select id from " + table + " where username = ? and password = ?");
 			stmt.setString(1, user.getUsername());
 			stmt.setString(2, user.getPassword());
 			ResultSet rs = stmt.executeQuery();

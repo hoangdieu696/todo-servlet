@@ -39,7 +39,9 @@ public class Login extends HttpServlet {
 			request.getRequestDispatcher("login.jsp").include(request, response);
 		} else {
 			Cookie uid = new Cookie("user_id", String.valueOf(id));
+			Cookie cuser = new Cookie("username", username); 
 			response.addCookie(uid);
+			response.addCookie(cuser);
 
 			response.sendRedirect(request.getContextPath() + "/todo");
 		}
